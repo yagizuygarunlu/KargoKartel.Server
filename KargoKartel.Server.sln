@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{91DC7F5C-A0D5-4BB3-9EE6-9CDB6D93FAD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KargoKartel.Server.WebAPI", "WebAPI\KargoKartel.Server.WebAPI.csproj", "{8D6B33C5-CEE1-20B5-A207-99CBB61F699C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KargoKartel.Server.AppHost", "KargoKartel.Server.AppHost\KargoKartel.Server.AppHost.csproj", "{C94D2DBE-BCE3-42D1-82CD-5E9FCA510E17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KargoKartel.Server.ServiceDefaults", "KargoKartel.Server.ServiceDefaults\KargoKartel.Server.ServiceDefaults.csproj", "{E3CE50DF-20D4-17BE-E214-7C7A1F78838B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KargoKartel.Server.Domain", "KargoKartel.Domain\KargoKartel.Server.Domain.csproj", "{9CEFBCFE-FBD9-487A-B474-6ABCC33A60E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D6B33C5-CEE1-20B5-A207-99CBB61F699C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D6B33C5-CEE1-20B5-A207-99CBB61F699C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D6B33C5-CEE1-20B5-A207-99CBB61F699C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D6B33C5-CEE1-20B5-A207-99CBB61F699C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C94D2DBE-BCE3-42D1-82CD-5E9FCA510E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C94D2DBE-BCE3-42D1-82CD-5E9FCA510E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C94D2DBE-BCE3-42D1-82CD-5E9FCA510E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C94D2DBE-BCE3-42D1-82CD-5E9FCA510E17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3CE50DF-20D4-17BE-E214-7C7A1F78838B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3CE50DF-20D4-17BE-E214-7C7A1F78838B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3CE50DF-20D4-17BE-E214-7C7A1F78838B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3CE50DF-20D4-17BE-E214-7C7A1F78838B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CEFBCFE-FBD9-487A-B474-6ABCC33A60E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CEFBCFE-FBD9-487A-B474-6ABCC33A60E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CEFBCFE-FBD9-487A-B474-6ABCC33A60E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CEFBCFE-FBD9-487A-B474-6ABCC33A60E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D6B33C5-CEE1-20B5-A207-99CBB61F699C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{C94D2DBE-BCE3-42D1-82CD-5E9FCA510E17} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E3CE50DF-20D4-17BE-E214-7C7A1F78838B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9CEFBCFE-FBD9-487A-B474-6ABCC33A60E8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1CEF2F71-5D40-4E09-AEC5-43D9246F1011}
+	EndGlobalSection
+EndGlobal
