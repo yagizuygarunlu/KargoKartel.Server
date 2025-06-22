@@ -8,9 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Scalar.AspNetCore" Version="2.5.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KargoKartel.Server.Infrastructure\KargoKartel.Server.Infrastructure.csproj" />
     <ProjectReference Include="..\KargoKartel.Server.ServiceDefaults\KargoKartel.Server.ServiceDefaults.csproj" />
   </ItemGroup>
 
