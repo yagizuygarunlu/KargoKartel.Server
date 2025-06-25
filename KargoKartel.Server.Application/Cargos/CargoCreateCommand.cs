@@ -1,12 +1,13 @@
 ﻿using FluentValidation;
 using KargoKartel.Server.Domain.Cargos;
+using KargoKartel.Server.Domain.Common;
 using KargoKartel.Server.Infrastructure.Contexts;
 using Mapster;
 using MediatR;
 
 namespace KargoKartel.Server.Application.Cargos
 {
-    public sealed record CargoCreateCommand : IRequest<string>
+    public sealed record CargoCreateCommand : IRequest<Result<string>>
     {
         public Person Sender { get; init; } = default!;
         public Person Receiver { get; init; } = default!;
@@ -31,9 +32,9 @@ namespace KargoKartel.Server.Application.Cargos
         }
     }
 
-    internal sealed class CargoCreateCommandHandler(ICargoRepository cargoRepository, IUnitOfWork unitOfWork) : IRequestHandler<CargoCreateCommand, string>
+    internal sealed class CargoCreateCommandHandler(ICargoRepository cargoRepository, IUnitOfWork unitOfWork) : IRequestHandler<CargoCreateCommand, Result<string>>
     {
-        public async Task<string> Handle(CargoCreateCommand request, CancellationToken cancellationToken)
+        public async Task<Result<string>> Handle(CargoCreateCommand request, CancellationToken cancellationToken)
         {
             Cargo cargo = request.Adapt<Cargo>();
 
