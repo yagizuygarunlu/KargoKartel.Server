@@ -24,6 +24,14 @@ namespace KargoKartel.Server.Infrastructure.Configurations
                 .Property(p => p.CargoType)
                 .HasConversion(t => t.Value, value => CargoType.FromValue(value));
             });
+
+            //Smart Enum conversion for Status
+            builder
+                .Property(c => c.Status)
+                .HasConversion(
+                    status => status.Value,
+                    value => Status.FromValue(value))
+                .HasMaxLength(50);
         }
     }
 }

@@ -8,6 +8,8 @@ namespace KargoKartel.Server.Domain.Cargos
         public Person Receiver { get; set; } = default!;
         public Address ReceiveAddress { get; set; } = default!;
         public CargoInformation CargoInformation { get; set; } = default!;
+        public Status Status { get; set; } = Status.Pending;
     }
+
 }
 
