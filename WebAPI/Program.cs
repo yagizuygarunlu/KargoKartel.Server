@@ -21,6 +21,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.MapAuthEndpoints();
 app.MapCargoEndpoints();
 
 app.Run();

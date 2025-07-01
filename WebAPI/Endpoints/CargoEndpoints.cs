@@ -10,8 +10,8 @@ namespace KargoKartel.Server.WebAPI.Endpoints
     {
         public static void MapCargoEndpoints(this IEndpointRouteBuilder app)
         {
-            RouteGroupBuilder group = app.MapGroup("/api/v1").WithTags("Cargos");
-            //.RequireAuthorization();
+            RouteGroupBuilder group = app.MapGroup("/api/v1").WithTags("Cargos")
+            .RequireAuthorization();
 
             group.MapGet("/cargos", async ([FromServices] ISender sender, [AsParameters] CargoGetAllQuery request, CancellationToken cancellationToken) =>
             {
