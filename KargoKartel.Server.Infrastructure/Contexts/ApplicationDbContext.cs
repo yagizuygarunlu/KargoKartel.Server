@@ -9,7 +9,7 @@ using System.Security.Claims;
 
 namespace KargoKartel.Server.Infrastructure.Contexts
 {
-    public class ApplicationDbContext:IdentityDbContext<AppUser,IdentityRole<Guid>, Guid>, IUnitOfWork
+    public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>, IUnitOfWork
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -30,15 +30,15 @@ namespace KargoKartel.Server.Infrastructure.Contexts
             var entries = ChangeTracker.Entries<Entity>();
 
             HttpContextAccessor httpContextAccessor = new();
-            string userIdString =
+            string? userIdString =
                 httpContextAccessor
                 .HttpContext!
                 .User
                 .Claims
-                .First(p => p.Type == ClaimTypes.NameIdentifier)
+                .FirstOrDefault(p => p.Type == ClaimTypes.NameIdentifier)?
                 .Value;
 
-            Guid userId = Guid.Parse(userIdString);
+            _ = Guid.TryParse(userIdString, out Guid userId);
 
             foreach (var entry in entries)
             {

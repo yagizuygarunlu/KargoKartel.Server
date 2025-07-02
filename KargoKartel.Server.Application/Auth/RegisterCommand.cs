@@ -13,7 +13,7 @@ namespace KargoKartel.Server.Application.Auth
         public string LastName { get; init; } = string.Empty;
     }
 
-    internal sealed class RegisterCommandHandler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+    internal sealed class RegisterCommandHandler(UserManager<AppUser> userManager)
         : IRequestHandler<RegisterCommand, Result<string>>
     {
         public async Task<Result<string>> Handle(RegisterCommand request, CancellationToken cancellationToken)

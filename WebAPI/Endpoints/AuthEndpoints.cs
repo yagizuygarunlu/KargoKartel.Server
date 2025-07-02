@@ -18,12 +18,12 @@ namespace KargoKartel.Server.WebAPI.Endpoints
                 return response.IsSuccessful ? Results.Ok(response) : Results.InternalServerError(response);
             })
             .WithName("Login");
-            //group.MapPost("/register", async (HttpContext context) =>
-            //{
-            //    // Implement registration logic here
-            //    return Results.Ok("Registration successful");
-            //})
-            //.WithName("Register");
+            group.MapPost("/register", async ([FromServices] ISender sender, [FromBody] RegisterCommand request, CancellationToken cancellatioNToken) =>
+            {
+                var response = await sender.Send(request, cancellatioNToken);
+                return response.IsSuccessful ? Results.Ok(response) : Results.InternalServerError(response);
+            })
+            .WithName("Register");
             //group.MapPost("/logout", async (HttpContext context) =>
             //{
             //    // Implement logout logic here

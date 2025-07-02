@@ -28,7 +28,7 @@ namespace KargoKartel.Server.Application.Cargos
             RuleFor(c => c.ReceiveAddress.Neighborhood).NotNull().WithMessage("Neighborhood is required.");
             RuleFor(c => c.CargoInformation.CargoType.Value)
                 .GreaterThanOrEqualTo(0).WithMessage("Cargo type must be a valid value.")
-                .LessThan(CargoType.List.Count).WithMessage("");
+                .LessThan(CargoType.List.Count);
         }
     }
 

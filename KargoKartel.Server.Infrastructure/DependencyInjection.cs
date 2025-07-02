@@ -1,6 +1,8 @@
-﻿using KargoKartel.Server.Domain.Users;
+﻿using KargoKartel.Server.Application.Services;
+using KargoKartel.Server.Domain.Users;
 using KargoKartel.Server.Infrastructure.Contexts;
 using KargoKartel.Server.Infrastructure.Options;
+using KargoKartel.Server.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,13 +33,15 @@ namespace KargoKartel.Server.Infrastructure
                     opt.Password.RequireUppercase = false;
                     opt.Lockout.MaxFailedAccessAttempts = 5;
                     opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                    opt.SignIn.RequireConfirmedEmail = true;
+                    opt.SignIn.RequireConfirmedEmail = false; // Disabled for development
                 })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             services.Configure<JwtOptions>(configuration.GetSection("Jwt"));
             services.ConfigureOptions<JwtOptionsSetup>();
+
+            services.AddScoped<IJwtProvider, JwtProvider>();
 
             services.Scan(opt => opt
                     .FromAssemblies(typeof(DependencyInjection).Assembly)

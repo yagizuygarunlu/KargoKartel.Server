@@ -48,14 +48,14 @@ namespace KargoKartel.Server.Application.Auth
             }
             if (signInResult.IsNotAllowed)
             {
-                return Result<LoginResponse>.Failure(403, "User is not allowed to sign in");
+                return Result<LoginResponse>.Failure(403, "User is not allowed to sign in. Please confirm your email address.");
             }
             if (!signInResult.Succeeded)
             {
                 return Result<LoginResponse>.Failure(401, "Invalid credentials");
             }
             var token = await jwtProvider.CreateTokenAsync(user, request.Password, cancellationToken);
-            return new LoginResponse(token, DateTime.UtcNow.AddHours(1));
+            return Result<LoginResponse>.Succeed(new LoginResponse(token, DateTime.UtcNow.AddHours(1)));
         }
     }
 }
