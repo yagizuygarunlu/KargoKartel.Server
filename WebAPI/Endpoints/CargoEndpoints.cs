@@ -18,11 +18,14 @@ namespace KargoKartel.Server.WebAPI.Endpoints
                 var cargos = await sender.Send(request, cancellationToken);
                 return Results.Ok(cargos);
             });
-            //group.MapGet("/cargos/{id}", async (ICargoRepository cargoRepository, int id) =>
-            //{
-            //    var cargo = await cargoRepository.GetByIdAsync(id);
-            //    return cargo is not null ? Results.Ok(cargo) : Results.NotFound();
-            //});
+
+            group.MapGet("/cargos/{id}", async ([FromServices] ISender sender, [FromRoute] Guid id, CancellationToken cancellationToken) =>
+            {
+                var response = await sender.Send(new CargoGetQuery(id), cancellationToken);
+                return response.IsSuccessful ? Results.Ok(response) : Results.NotFound(response);
+            })
+                .Produces<Result<Cargo>>()
+                .WithName("CargoGet");
 
             group.MapPost("/cargos", async ([FromServices] ISender sender, [FromBody] CargoCreateCommand request, CancellationToken cancellationToken) =>
             {
@@ -32,32 +35,25 @@ namespace KargoKartel.Server.WebAPI.Endpoints
                 .Produces<Result<string>>()
                 .WithName("CargoCreate");
 
-            //group.MapPut("/cargos/{id}", async (ICargoRepository cargoRepository, int id, Cargo updatedCargo, IUnitOfWork unitOfWork) =>
-            //{
-            //    if (id != updatedCargo.Id)
-            //    {
-            //        return Results.BadRequest("Cargo ID mismatch.");
-            //    }
-            //    var existingCargo = await cargoRepository.GetByIdAsync(id);
-            //    if (existingCargo is null)
-            //    {
-            //        return Results.NotFound();
-            //    }
-            //    await cargoRepository.UpdateAsync(updatedCargo);
-            //    await unitOfWork.SaveChangesAsync();
-            //    return Results.NoContent();
-            //});
-            //group.MapDelete("/cargos/{id}", async (ICargoRepository cargoRepository, int id, IUnitOfWork unitOfWork) =>
-            //{
-            //    var existingCargo = await cargoRepository.GetByIdAsync(id);
-            //    if (existingCargo is null)
-            //    {
-            //        return Results.NotFound();
-            //    }
-            //    await cargoRepository.DeleteAsync(existingCargo);
-            //    await unitOfWork.SaveChangesAsync();
-            //    return Results.NoContent();
-            //});
+            group.MapPut("/cargos/{id}", async ([FromServices] ISender sender, [FromRoute] Guid id, [FromBody] CargoUpdateCommand request, CancellationToken cancellationToken) =>
+            {
+                if (id != request.CargoId)
+                {
+                    return Results.BadRequest("Cargo ID mismatch");
+                }
+                var response = await sender.Send(request, cancellationToken);
+                return response.IsSuccessful ? Results.Ok(response) : Results.InternalServerError(response);
+            })
+                .Produces<Result<string>>()
+                .WithName("CargoUpdate");
+
+            group.MapDelete("/cargos/{id}", async ([FromServices] ISender sender, [FromRoute] Guid id, CancellationToken cancellationToken) =>
+            {
+                var response = await sender.Send(new CargoDeleteCommand(id), cancellationToken);
+                return response.IsSuccessful ? Results.Ok(response) : Results.InternalServerError(response);
+            })
+                .Produces<Result<string>>()
+                .WithName("CargoDelete");
         }
     }
 }

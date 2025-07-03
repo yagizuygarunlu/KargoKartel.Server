@@ -46,7 +46,8 @@ app.UseCors(x => x
     .AllowAnyHeader()
     .AllowCredentials()
     .AllowAnyMethod()
-    .SetIsOriginAllowed(_ => true));
+    .SetIsOriginAllowed(_ => true)
+    .SetPreflightMaxAge(TimeSpan.FromMinutes(10)));
 
 app.UseAuthentication();
 
