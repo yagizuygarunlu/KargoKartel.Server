@@ -9,7 +9,6 @@ using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddServiceDefaults();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 // Add services to the container.
@@ -58,7 +57,6 @@ app.UseRateLimiter();
 app.UseResponseCompression();
 
 app.UseExceptionHandler();
-app.MapDefaultEndpoints();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KargoKartel.Server.Infrastructure\KargoKartel.Server.Infrastructure.csproj" />
-    <ProjectReference Include="..\KargoKartel.Server.ServiceDefaults\KargoKartel.Server.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>
