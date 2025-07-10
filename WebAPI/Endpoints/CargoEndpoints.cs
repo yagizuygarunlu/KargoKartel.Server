@@ -47,6 +47,18 @@ namespace KargoKartel.Server.WebAPI.Endpoints
                 .Produces<Result<string>>()
                 .WithName("CargoUpdate");
 
+            group.MapPut("/cargos/{id}/status", async ([FromServices] ISender sender, [FromRoute] Guid id, [FromBody] CargoStatusUpdateCommand request, CancellationToken cancellationToken) => 
+            {
+                if (id != request.CargoId)
+                {
+                    return Results.BadRequest("Cargo ID mismatch");
+                }
+                var response = await sender.Send(request, cancellationToken);
+                return response.IsSuccessful ? Results.Ok(response) : Results.InternalServerError(response);
+            })
+                .Produces<Result<string>>()
+                .WithName("CargoStatusUpdate");
+
             group.MapDelete("/cargos/{id}", async ([FromServices] ISender sender, [FromRoute] Guid id, CancellationToken cancellationToken) =>
             {
                 var response = await sender.Send(new CargoDeleteCommand(id), cancellationToken);
